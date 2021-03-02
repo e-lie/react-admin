@@ -10,7 +10,7 @@ export default options => {
         return new ApolloClient();
     }
 
-    const { cache, link, uri, ...otherOptions } = options;
+    const { cache, link, uri, headers, ...otherOptions } = options;
     let finalLink = link;
     let finalCache = cache;
 
@@ -25,7 +25,7 @@ export default options => {
     });
 
     if (!link && uri) {
-        finalLink = new HttpLink({ uri });
+        finalLink = new HttpLink({ uri, headers });
     }
 
     if (!cache) {
